@@ -3,7 +3,7 @@ import "./app.css";
 
 const App = () => {
   const [showGame, setShowGame] = useState<boolean>(false);
-  const [cards, setCards] = useState(["123"]);
+  const [cards, setCards] = useState(["card1"]);
 
   const handleStartClick = () => {
     setShowGame(true);
@@ -13,12 +13,16 @@ const App = () => {
     <main>
       {!showGame && (
         <>
-          <h1>Welcome to SnapWars</h1>
-          <h2>Marvel Snap guessing game</h2>
+          <h1 className="title">Welcome to SnapWars</h1>
+          <h2 className="headline gradient text">Marvel Snap guessing game</h2>
           {cards.length === 0 ? (
-            <p>Loading Game</p>
+            <p className="loading">Loading Game</p>
           ) : (
-            <button type="submit" onClick={handleStartClick}>
+            <button
+              type="submit"
+              className="button gradient"
+              onClick={handleStartClick}
+            >
               Start
             </button>
           )}
