@@ -1,9 +1,10 @@
 import { useState } from "react";
 import "./app.css";
+import { useCards } from "./hooks";
 
 const App = () => {
   const [showGame, setShowGame] = useState<boolean>(false);
-  const [cards, setCards] = useState(["card1"]);
+  const [cards, setCards, allCards] = useCards(100);
 
   const handleStartClick = () => {
     setShowGame(true);
