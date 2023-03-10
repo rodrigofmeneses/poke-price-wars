@@ -1,11 +1,16 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { pokeApiClient } from "../api";
 
 const fetchCards = async (
   amount: number,
   setters: Dispatch<SetStateAction<any[]>>[]
 ) => {
-  const response = { data: ["card1", "card2"] };
-  setters.forEach((setter) => setter(response.data));
+  const response = await pokeApiClient.findCardsByQueries({
+    pageSize: 3,
+    page: 1,
+  });
+
+  setters.forEach((setter) => setter(response));
 };
 
 const useCards = (amount: number) => {
@@ -13,7 +18,6 @@ const useCards = (amount: number) => {
   const [cards, setCards] = useState<any>([]);
 
   useEffect(() => {
-    // Executa função assincrona
     fetchCards(amount, [setAllCards, setCards]);
   }, []);
 
