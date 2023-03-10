@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./app.css";
+import { Game } from "./components";
 import { useCards } from "./hooks";
 
 const App = () => {
@@ -30,9 +31,11 @@ const App = () => {
         </>
       )}
       {showGame && (
-        <>
-          <h1>Game</h1>
-        </>
+        <Game
+          cardState={[cards, setCards]}
+          originalList={allCards}
+          setShowGame={setShowGame}
+        />
       )}
     </main>
   );
