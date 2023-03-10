@@ -13,9 +13,15 @@ const fetchCards = async (
   setters.forEach((setter) => setter(response));
 };
 
-const useCards = (amount: number) => {
-  const [allCards, setAllCards] = useState<any>([]);
-  const [cards, setCards] = useState<any>([]);
+type UseCardsReturnType = [
+  cards: Card[],
+  setCards: Dispatch<SetStateAction<Card[]>>,
+  allCards: Card[]
+];
+
+const useCards = (amount: number): UseCardsReturnType => {
+  const [allCards, setAllCards] = useState<Card[]>([]);
+  const [cards, setCards] = useState<Card[]>([]);
 
   useEffect(() => {
     fetchCards(amount, [setAllCards, setCards]);
