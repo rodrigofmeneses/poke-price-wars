@@ -1,0 +1,45 @@
+.card {
+  background-color: var(--color-darkest);
+  width: 50%;
+  border-radius: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  /* gap: 1rem; */
+}
+
+.card:hover {
+  background-color: var(--color-darkish);
+  cursor: pointer;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  font-size: 3rem;
+  padding: 1rem;
+}
+
+.header .correct {
+  color: var(--color-secondary);
+}
+.header .wrong {
+  color: var(--color-danger);
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.card-image {
+  width: 70%;
+  /* padding: 1rem; */
+  height: auto;
+  border-radius: 1rem;
+  border: 2px solid var(--color-light);
+}
+
+.buttons {
+}
