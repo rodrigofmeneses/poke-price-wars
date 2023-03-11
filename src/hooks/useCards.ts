@@ -6,7 +6,7 @@ const fetchCards = async (
   setters: Dispatch<SetStateAction<any[]>>[]
 ) => {
   const response = await pokeApiClient.findCardsByQueries({
-    pageSize: 3,
+    pageSize: amount,
     page: 1,
   });
 

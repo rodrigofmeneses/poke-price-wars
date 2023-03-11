@@ -5,7 +5,7 @@ import { useCards } from "./hooks";
 
 const App = () => {
   const [showGame, setShowGame] = useState<boolean>(false);
-  const [cards, setCards, allCards] = useCards(100);
+  const [cards, setCards, allCards] = useCards(30);
 
   const handleStartClick = () => {
     setShowGame(true);

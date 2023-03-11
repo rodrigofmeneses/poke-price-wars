@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import CardContainer from "./CardContainer";
 import "./game.css";
 
@@ -8,20 +9,64 @@ interface GameProps {
   setShowGame: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const handleChoice = (c: Card) => {};
-
 const Game: React.FC<GameProps> = ({
   cardState,
   originalList,
   setShowGame,
 }) => {
+  const [cards, setCards] = cardState;
   const [over, setOver] = useState<boolean>(false);
   const [card1, setCard1] = useState<Card | null>(null);
   const [card2, setCard2] = useState<Card | null>(null);
-  // TODO: Use actual random repos
+  const [correct, setCorrect] = useState<number>(0);
+  const [incorrect, setIncorrect] = useState<number>(0);
+
+  const randomSelect = (arr: Card[]) => {
+    if (arr.length < 2) {
+      setCards(originalList);
+      setOver(true);
+      return;
+    }
+
+    const generateRandom = () => Math.floor(Math.random() * arr.length);
+
+    const randomIndex1 = generateRandom();
+    let randomIndex2 = generateRandom();
+
+    while (randomIndex1 === randomIndex2) {
+      randomIndex2 = generateRandom();
+    }
+
+    const randomCard1 = arr[randomIndex1];
+    const randomCard2 = arr[randomIndex2];
+
+    const updatedArr = arr.filter(
+      (card) => card.id !== randomCard1.id && card.id !== randomCard2.id
+    );
+
+    setCard1(randomCard1);
+    setCard2(randomCard2);
+
+    setCards(updatedArr);
+  };
+
+  const handleChoice = (c: Card) => {
+    const chosenCard = c.id === card1?.id ? card1 : card2;
+    const winner =
+      card1?.cardmarket.prices.averageSellPrice! >
+      card2?.cardmarket.prices.averageSellPrice!
+        ? card1
+        : card2;
+
+    if (chosenCard?.id === winner?.id) {
+      setCorrect((prev) => prev + 1);
+    } else {
+      setIncorrect((prev) => prev + 1);
+    }
+  };
+
   useEffect(() => {
-    setCard1(originalList[0]);
-    setCard2(originalList[1]);
+    randomSelect(cards);
   }, []);
 
   return (
@@ -37,6 +82,11 @@ const Game: React.FC<GameProps> = ({
               <CardContainer content={card1} handler={handleChoice} />
 
               <div className="dashboard">
+                <div className="icons correct">
+                  <p>{correct}</p>
+                  <FaCheckCircle />
+                </div>
+
                 <h1 className="icon-text">Click to</h1>
                 <img
                   src="public/pokeball.webp"
@@ -44,6 +94,11 @@ const Game: React.FC<GameProps> = ({
                   className="icon-versus"
                 />
                 <h1 className="icon-text">next battle</h1>
+
+                <div className="icons incorrect">
+                  <p>{incorrect}</p>
+                  <FaTimesCircle />
+                </div>
               </div>
 
               <CardContainer content={card2} handler={handleChoice} />
@@ -64,7 +119,7 @@ const Game: React.FC<GameProps> = ({
             type="submit"
             className="button gradient alternate"
             // TODO: change this button to refresh cards
-            onClick={() => setShowGame(false)}
+            onClick={() => randomSelect(cards)}
           >
             Skip
           </button>

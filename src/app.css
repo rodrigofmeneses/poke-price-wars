@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200;400;700&family=Raleway:wght@200;400;700&display=swap");
 
 :root {
-  --color-primary: #630771;
-  --color-secondary: #cd32e5;
-  --color-highlight: #2c8aa7;
+  --color-primary: #dd08fd;
+  --color-secondary: #00ff37;
+  --color-highlight: #fbff00;
   --color-danger: #da0a11;
   --color-light: #fff;
   /*dark shades*/
