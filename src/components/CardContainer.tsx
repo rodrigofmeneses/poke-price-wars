@@ -2,19 +2,36 @@ import "./card-container.css";
 
 interface CardProps {
   content: Card;
+  endRoundState: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
+  winnerState: [Card | null, React.Dispatch<React.SetStateAction<Card | null>>];
   handler: (c: Card) => void;
 }
 
-const CardContainer: React.FC<CardProps> = ({ content, handler }) => {
+const CardContainer: React.FC<CardProps> = ({
+  content,
+  endRoundState,
+  winnerState,
+  handler,
+}) => {
+  const [endRound, setEndRound] = endRoundState;
+  const [winner, setWinner] = winnerState;
+
   return (
-    <div className="card" onClick={() => handler(content)}>
-      <div className="header">
-        € {content.cardmarket.prices.averageSellPrice}
+    <div
+      className="card"
+      onClick={() => {
+        if (!endRound) {
+          handler(content);
+        }
+      }}
+    >
+      <div className={`header ${winner && winner?.id === content.id}`}>
+        € {!endRound ? "????" : content.cardmarket.prices.averageSellPrice}
       </div>
       <div className="content">
         <img
           src={content.images.large}
-          alt="pokemon-image"
+          alt={content.name}
           className="card-image"
         />
       </div>

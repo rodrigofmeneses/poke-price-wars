@@ -20,10 +20,10 @@
   padding: 1rem;
 }
 
-.header .correct {
+.header.true {
   color: var(--color-secondary);
 }
-.header .wrong {
+.header.false {
   color: var(--color-danger);
 }
 

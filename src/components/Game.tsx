@@ -16,6 +16,8 @@ const Game: React.FC<GameProps> = ({
 }) => {
   const [cards, setCards] = cardState;
   const [over, setOver] = useState<boolean>(false);
+  const [endRound, setEndRound] = useState<boolean>(false);
+  const [winner, setWinner] = useState<Card | null>(null);
   const [card1, setCard1] = useState<Card | null>(null);
   const [card2, setCard2] = useState<Card | null>(null);
   const [correct, setCorrect] = useState<number>(0);
@@ -48,6 +50,9 @@ const Game: React.FC<GameProps> = ({
     setCard2(randomCard2);
 
     setCards(updatedArr);
+
+    setWinner(null);
+    setEndRound(false);
   };
 
   const handleChoice = (c: Card) => {
@@ -63,6 +68,9 @@ const Game: React.FC<GameProps> = ({
     } else {
       setIncorrect((prev) => prev + 1);
     }
+
+    setWinner(winner);
+    setEndRound(true);
   };
 
   useEffect(() => {
@@ -72,19 +80,31 @@ const Game: React.FC<GameProps> = ({
   return (
     <div className="game">
       {over ? (
-        <div className="score"></div>
+        <div className="score">
+          <h1 className="title">Congratulations, you are the best!</h1>
+          <h2 className="title">Your Score!</h2>
+          <ul>
+            <li className="title">Correct {correct}</li>
+            <li className="title">Incorrect {incorrect}</li>
+          </ul>
+        </div>
       ) : (
         card1 &&
         card2 && (
           <div className="cards">
             <h1 className="title">Choose the most expensive card</h1>
             <div className="container">
-              <CardContainer content={card1} handler={handleChoice} />
+              <CardContainer
+                content={card1}
+                endRoundState={[endRound, setEndRound]}
+                winnerState={[winner, setWinner]}
+                handler={handleChoice}
+              />
 
               <div className="dashboard">
                 <div className="icons correct">
                   <p>{correct}</p>
-                  <FaCheckCircle />
+                  <FaCheckCircle className="icon" />
                 </div>
 
                 <h1 className="icon-text">Click to</h1>
@@ -92,16 +112,22 @@ const Game: React.FC<GameProps> = ({
                   src="public/pokeball.webp"
                   alt="Pokeball"
                   className="icon-versus"
+                  onClick={() => randomSelect(cards)}
                 />
                 <h1 className="icon-text">next battle</h1>
 
                 <div className="icons incorrect">
                   <p>{incorrect}</p>
-                  <FaTimesCircle />
+                  <FaTimesCircle className="icon" />
                 </div>
               </div>
 
-              <CardContainer content={card2} handler={handleChoice} />
+              <CardContainer
+                content={card2}
+                endRoundState={[endRound, setEndRound]}
+                winnerState={[winner, setWinner]}
+                handler={handleChoice}
+              />
             </div>
           </div>
         )
@@ -114,16 +140,6 @@ const Game: React.FC<GameProps> = ({
         >
           {over ? "Play Again" : "Back"}
         </button>
-        {!over && (
-          <button
-            type="submit"
-            className="button gradient alternate"
-            // TODO: change this button to refresh cards
-            onClick={() => randomSelect(cards)}
-          >
-            Skip
-          </button>
-        )}
       </div>
     </div>
   );
