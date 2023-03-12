@@ -1,15 +1,17 @@
 .card {
-  background-color: var(--color-darkest);
+  /* background-color: var(--color-darkest); */
   width: 50%;
+  height: auto;
+  max-height: 90%;
   border-radius: 1.5rem;
   display: flex;
   flex-direction: column;
   font-size: 1rem;
-  /* gap: 1rem; */
+  margin-top: 4rem;
 }
 
 .card:hover {
-  background-color: var(--color-darkish);
+  background-color: lightgreen;
   cursor: pointer;
 }
 
@@ -34,12 +36,8 @@
 }
 
 .card-image {
-  width: 70%;
-  /* padding: 1rem; */
+  width: 50%;
   height: auto;
   border-radius: 1rem;
   border: 2px solid var(--color-light);
-}
-
-.buttons {
 }

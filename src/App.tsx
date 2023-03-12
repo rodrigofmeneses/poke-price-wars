@@ -5,7 +5,7 @@ import { useCards } from "./hooks";
 
 const App = () => {
   const [showGame, setShowGame] = useState<boolean>(false);
-  const [cards, setCards, allCards] = useCards(30);
+  const [cards, setCards, allCards] = useCards(4);
 
   const handleStartClick = () => {
     setShowGame(true);
@@ -15,8 +15,10 @@ const App = () => {
     <main>
       {!showGame && (
         <>
-          <h1 className="title">Welcome to SnapWars</h1>
-          <h2 className="headline gradient text">Marvel Snap guessing game</h2>
+          <h1 className="title">Welcome to PokePriceWars</h1>
+          <h2 className="headline gradient text">
+            Pokemon pricing guessing game
+          </h2>
           {cards.length === 0 ? (
             <p className="loading">Loading Game</p>
           ) : (

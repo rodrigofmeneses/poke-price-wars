@@ -81,12 +81,17 @@ const Game: React.FC<GameProps> = ({
     <div className="game">
       {over ? (
         <div className="score">
-          <h1 className="title">Congratulations, you are the best!</h1>
-          <h2 className="title">Your Score!</h2>
-          <ul>
-            <li className="title">Correct {correct}</li>
-            <li className="title">Incorrect {incorrect}</li>
-          </ul>
+          <div className="title">
+            <h1>Congratulations </h1>
+            <h1>you are the best!</h1>
+          </div>
+          <div className="headline">
+            <h2 className="title">Your Score!</h2>
+            <ul>
+              <li className="headline">Correct - {correct}</li>
+              <li className="headline">Incorrect - {incorrect}</li>
+            </ul>
+          </div>
         </div>
       ) : (
         card1 &&

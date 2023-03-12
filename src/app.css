@@ -1,13 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200;400;700&family=Raleway:wght@200;400;700&display=swap");
+@import url("https://fonts.cdnfonts.com/css/pokemon-solid");
 
 :root {
-  --color-primary: #dd08fd;
-  --color-secondary: #00ff37;
-  --color-highlight: #fbff00;
+  --color-primary: #d5a100;
+  --color-secondary: #0075be;
+  --color-highlight: #ffcc00;
   --color-danger: #da0a11;
   --color-light: #fff;
   /*dark shades*/
-  --color-shade: #002754;
+  --color-shade: #0a285f;
   --color-darkish: #223;
   --color-dark: #112;
   --color-darkest: #001;
@@ -24,7 +25,6 @@
 .gradient.text {
   background-clip: text;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .gradient.alternate {
@@ -41,13 +41,18 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Oswald", sans-serif;
+  /* font-family: "Oswald", sans-serif; */
+  font-family: "Pokemon Solid", sans-serif;
+  letter-spacing: 0.5rem;
 }
 
 body {
   font-size: 6rem;
-  color: var(--color-light);
-  background-color: var(--color-dark);
+  background-image: url("../public/background.webp");
+  background-size: 100vw 100vh;
+  color: var(--color-highlight);
+  text-shadow: 2px 2px var(--color-shade);
+  -webkit-text-stroke: 1px var(--color-secondary);
 }
 
 main {
@@ -64,16 +69,19 @@ main {
   font-size: 6rem;
   font-weight: 700;
   text-align: center;
-  color: var(--color-light);
-  text-shadow: 3px 3px var(--color-primary);
+  color: var(--color-highlight);
+  text-shadow: 4px 4px var(--color-shade);
+  -webkit-text-stroke: 3px var(--color-secondary);
 }
 
 .headline {
-  font-size: 3rem;
+  font-size: 3.5rem;
   line-height: 4rem;
   text-align: center;
   margin-top: 2rem;
-  color: var(--color-primary);
+  font-family: "Oswald";
+  font-weight: 700;
+  color: var(--color-highlight);
 }
 
 .loading {
@@ -112,7 +120,7 @@ main {
   background: -webkit-linear-gradient(
     right,
     var(--color-primary),
-    var(--color-highlight)
+    var(--color-shade)
   );
   color: var(--color-light);
   box-shadow: 0px 5px var(--color-light);

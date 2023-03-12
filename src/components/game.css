@@ -26,7 +26,7 @@
   align-items: center;
   justify-content: center;
   width: 80%;
-  height: 100%;
+  height: 80%;
   gap: 1rem;
 }
 
@@ -56,7 +56,11 @@
 .icon-text {
   display: flex;
   justify-content: center;
-  font-size: 2rem;
+  font-size: 1.2rem;
+  overflow-wrap: break-word;
+  text-align: center;
+  text-transform: uppercase;
+  line-height: 1.8rem;
 }
 
 .dashboard {
@@ -85,13 +89,23 @@
   color: var(--color-danger);
 }
 
-h2.title {
-  padding-top: 5rem;
-  padding-bottom: 3rem;
-  font-size: 5rem;
+.score {
+  padding-bottom: 2rem;
 }
 
-li.title {
-  font-size: 4rem;
+.score .title {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   padding-bottom: 3rem;
+}
+
+.score .headline {
+  display: flex;
+  flex-direction: column;
+  letter-spacing: normal;
+  font-size: 4.5rem;
+  color: var(--color-highlight);
+  text-shadow: 2px 2px var(--color-shade);
+  -webkit-text-stroke: 2px var(--color-secondary);
 }
