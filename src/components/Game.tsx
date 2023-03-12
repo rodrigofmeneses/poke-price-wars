@@ -22,6 +22,9 @@ const Game: React.FC<GameProps> = ({
   const [card2, setCard2] = useState<Card | null>(null);
   const [correct, setCorrect] = useState<number>(0);
   const [incorrect, setIncorrect] = useState<number>(0);
+  const [round, setRound] = useState<number>(0);
+
+  const maxRounds = 10;
 
   const randomSelect = (arr: Card[]) => {
     if (arr.length < 2) {
@@ -53,6 +56,7 @@ const Game: React.FC<GameProps> = ({
 
     setWinner(null);
     setEndRound(false);
+    setRound(round + 1);
   };
 
   const handleChoice = (c: Card) => {
@@ -79,7 +83,7 @@ const Game: React.FC<GameProps> = ({
 
   return (
     <div className="game">
-      {over ? (
+      {over || round > maxRounds ? (
         <div className="score">
           <div className="title">
             <h1>Congratulations </h1>
@@ -98,6 +102,7 @@ const Game: React.FC<GameProps> = ({
         card2 && (
           <div className="cards">
             <h1 className="title">Choose the most expensive card</h1>
+            <h2 className="headline">Round {round}</h2>
             <div className="container">
               <CardContainer
                 content={card1}
@@ -141,9 +146,12 @@ const Game: React.FC<GameProps> = ({
         <button
           type="submit"
           className="button gradient"
-          onClick={() => setShowGame(false)}
+          onClick={() => {
+            setRound(0);
+            setShowGame(false);
+          }}
         >
-          {over ? "Play Again" : "Back"}
+          {over || round > maxRounds ? "Play Again" : "Restart"}
         </button>
       </div>
     </div>

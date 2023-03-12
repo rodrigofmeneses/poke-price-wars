@@ -5,12 +5,21 @@ const fetchCards = async (
   amount: number,
   setters: Dispatch<SetStateAction<any[]>>[]
 ) => {
-  const response = await pokeApiClient.findCardsByQueries({
-    pageSize: amount,
-    page: 1,
-  });
+  const numPages = Math.floor(amount / 250) + 1;
+  const numCardsLastPage = amount % 250;
 
-  setters.forEach((setter) => setter(response));
+  let allCards: pokeApiClient.Card[] = [];
+  for (let page = 1; page <= numPages; page++) {
+    allCards = [
+      ...allCards,
+      ...(await pokeApiClient.findCardsByQueries({
+        pageSize: page != numPages ? 250 : numCardsLastPage,
+        page,
+      })),
+    ];
+  }
+
+  setters.forEach((setter) => setter(allCards));
 };
 
 type UseCardsReturnType = [

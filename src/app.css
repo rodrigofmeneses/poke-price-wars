@@ -105,7 +105,7 @@ main {
 }
 
 .button {
-  color: var(--color-dark);
+  color: var(--color-light);
   font-size: 2rem;
   font-weight: 700;
   border: none;

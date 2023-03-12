@@ -5,11 +5,13 @@ import { useCards } from "./hooks";
 
 const App = () => {
   const [showGame, setShowGame] = useState<boolean>(false);
-  const [cards, setCards, allCards] = useCards(4);
+  const [cards, setCards, allCards] = useCards(200);
 
   const handleStartClick = () => {
     setShowGame(true);
   };
+
+  //TODO: Allow player choose number of rounds and total cards
 
   return (
     <main>
