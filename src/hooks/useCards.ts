@@ -15,6 +15,7 @@ const fetchCards = async (
       ...(await pokeApiClient.findCardsByQueries({
         pageSize: page != numPages ? 250 : numCardsLastPage,
         page,
+        orderBy: "-cardmarket.prices.averageSellPrice",
       })),
     ];
   }
