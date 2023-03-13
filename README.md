@@ -2,9 +2,11 @@
 
 ![Battle in PokePriceWars](./public/preview.png "Round 1 battle in PokePriceWars")
 
-> A guessing game based on the price of Pokémon TCG cards
+> A guessing game based on the prices of Pokémon TCG cards
 
 ### Live Demo
+
+https://poke-price-wars.vercel.app/
 
 ### 🛠 Tecnologias
 
