@@ -119,7 +119,7 @@ const Game: React.FC<GameProps> = ({
 
                 <h1 className="icon-text">Click to</h1>
                 <img
-                  src="public/pokeball.webp"
+                  src="/pokeball.webp"
                   alt="Pokeball"
                   className="icon-versus"
                   onClick={() => randomSelect(cards)}
